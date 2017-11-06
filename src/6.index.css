@@ -1,0 +1,11 @@
+.Comment {
+
+}
+.UserInfo {
+  display: flex;
+  flex-direction: column;
+}
+.Avatar {
+  width: 200px;
+  border-radius: 50%;
+}

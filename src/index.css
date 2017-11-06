@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+ul {
+  width: 480px;
+  height: 480px;
+}
+
+li {
+  list-style: none;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  float: left;
+}
+
+[data-field] {
+  color: red;
+}

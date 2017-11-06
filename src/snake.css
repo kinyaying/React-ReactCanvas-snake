@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+li {
+  border: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: auto;
+  height: 13px;
+}
+.snake {
+  background: #000;
+  border: 0.5px solid #fff;
+}
+
+span {
+  display: inline-block;
+  height: 13px;
+  width: 13px;
+  border: 0.5px solid #000;
+}
