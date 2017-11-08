@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 // import Chess from './chess.js';
-import Snake from './snake.js';
-
+// import Snake from './snake.js';
+// import TestCanvas from './testCanvas.js';
+import TestRouter from '../11_07/index'
 // 测试 defaultProps
 // class Greeting extends Component {
 //
@@ -23,7 +24,7 @@ import Snake from './snake.js';
 
 ReactDOM.render(
   <div>
-    <Snake />
+    <TestRouter />
   </div>,
   document.getElementById('root')
 );

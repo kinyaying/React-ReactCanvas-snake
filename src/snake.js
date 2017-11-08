@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+
+
 import './snake.css';
 
 export default class Snake extends Component {
@@ -7,7 +9,7 @@ export default class Snake extends Component {
     super(props);
 
     this.state = {
-      snakeArr: [[0,0],[0,1],[0,2],[0,3]],
+      snakeArr: [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7]],
       cell: []
     };
     this.timer = null;
@@ -65,7 +67,12 @@ export default class Snake extends Component {
     let snakeArr = this.state.snakeArr;
     let snakeHead = snakeArr[snakeArr.length - 1];
     let [x, y] = snakeHead;
-    snakeArr.push([x, y+1]);
+    let newHead = [x, y + 1];
+    let isSelf = snakeArr.some(cell => {
+      return cell[0] == newHead[0] && cell[1] == newHead[1];
+    })
+    if(isSelf) {alert('啊呀，咬到自己了！');clearInterval(this.timer);}
+    snakeArr.push(newHead);
     if(this.eatCell([x, y+1])) {
       this.createCell();
     } else {
@@ -82,7 +89,12 @@ export default class Snake extends Component {
     let snakeArr = this.state.snakeArr;
     let snakeHead = snakeArr[snakeArr.length - 1];
     let [x, y] = snakeHead;
-    snakeArr.push([x, y - 1]);
+    let newHead = [x, y - 1];
+    let isSelf = snakeArr.some(cell => {
+      return cell[0] == newHead[0] && cell[1] == newHead[1];
+    })
+    if(isSelf) {alert('啊呀，咬到自己了！');clearInterval(this.timer);}
+    snakeArr.push(newHead);
     if(this.eatCell([x, y - 1])) {
       this.createCell()
     } else {
@@ -99,7 +111,12 @@ export default class Snake extends Component {
     let snakeArr = this.state.snakeArr;
     let snakeHead = snakeArr[snakeArr.length - 1];
     let [x, y] = snakeHead;
-    snakeArr.push([x + 1, y]);
+    let newHead = [x + 1, y];
+    let isSelf = snakeArr.some(cell => {
+      return cell[0] == newHead[0] && cell[1] == newHead[1];
+    });
+    if(isSelf) {alert('啊呀，咬到自己了！');clearInterval(this.timer);}
+    snakeArr.push(newHead);
     if(this.eatCell([x + 1, y])) {
       this.createCell()
     } else {
@@ -116,7 +133,12 @@ export default class Snake extends Component {
     let snakeArr = this.state.snakeArr;
     let snakeHead = snakeArr[snakeArr.length - 1];
     let [x, y] = snakeHead;
-    snakeArr.push([x - 1, y]);
+    let newHead = [x - 1, y];
+    let isSelf = snakeArr.some(cell => {
+      return cell[0] == newHead[0] && cell[1] == newHead[1];
+    });
+    if(isSelf) {alert('啊呀，咬到自己了！');clearInterval(this.timer);}
+    snakeArr.push(newHead);
     if(this.eatCell([x - 1, y])) {
       this.createCell()
     } else {
@@ -127,20 +149,22 @@ export default class Snake extends Component {
     })
   }
 
-  createGame() {
+  createGame = () => {
     let DOM = [];
+    let stopGame= false;
     for(var i = 0; i < 50; i++) {
       let liDOM = [];
       for(var j = 0; j < 50; j++) {
         let isSnake = this.state.snakeArr.some(cell => {
-                        if(cell[0] == 50 || cell[1] == 50 || cell[0] < 0 || cell[1] < 0) {
-                          alert('啊呀，撞上了！');
-                          clearInterval(this.timer);
-                          // location.reload();
-                          return;
-                          // this.initSnake();
-                          // return;
+                        if(!stopGame) {
+                          if(cell[0] == 50 || cell[1] == 50 || cell[0] < 0 || cell[1] < 0) {
+                            stopGame = true;
+                            clearInterval(this.timer);
+                            alert('啊呀，撞墙上了！');
+                            return;
+                          }
                         }
+
                         return cell[0] == i && cell[1] == j;
                       });
         let isCell = this.state.cell[0] == i && this.state.cell[1] == j;
