@@ -1,3 +1,4 @@
+test:
 ```
 const defaultProps = {
   name: 'Stranger'
